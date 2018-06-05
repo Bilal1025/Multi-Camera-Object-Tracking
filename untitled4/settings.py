@@ -23,7 +23,7 @@ SECRET_KEY = 'k#sgpwdm8va-@7ycg(0q+m55l-i(!$r!v8d&2uxw*@*he-^6d='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['multi-cam.herokuapp.com']
 
 # Application definition
 
