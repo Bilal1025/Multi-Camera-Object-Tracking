@@ -1,0 +1,100 @@
+{% extends 'Base.html' %}
+{% block style %}
+    {% if not user.is_authenticated %}
+        style="background-color: white; padding: 40px; box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0
+        rgba(0,0,0,0.19); font-family: Roboto, sans-serif; font-size: 14px;"
+    {% else %}
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        var type = 2;
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="col-md-12" style="text-align: center">
+        <a href="{% url 'home' %}">Cameras</a>
+        <a href="{% url 'videosview' %}">Videos</a>
+    </div>
+    {% if videos.count is 0 %}
+        <a href="{% url 'addvideos' %}" style="text-decoration: none; color: #000000">
+            It's Lonely Here <span
+                style="color: #edb83a">Add Some Videos!</span>
+        </a>
+    {% else %}
+        {% for foo in videos %}
+            <div class="col-md-4" style="float:left; padding: 15px">
+                <div class="cameras" style="float: left; border: 1px solid #eaeeff; width: 100%;">
+                    <div class="col-md-12" style="padding: 0; cursor: pointer">
+                        {% load static %}
+                        <img width="300" class="child" height="200" src="{% static foo.thumbnail %}"
+                             style="width: 100%">
+                    </div>
+                    <div style="text-align: center; padding-bottom: 10px; padding-top: 10px">
+                        {{ foo.name }}
+                        <img class="delete" src="{% static 'delete.png' %}"
+                             style="float: right; width: 5%; margin-right: 5%; cursor: pointer">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block after %}
+    {% if user.is_authenticated and videos.count > 0 %}
+        <form action="{% url 'addvideos' %}">
+            <div class="container">
+                <div class="col-md-12" style="text-align: center">
+                    <button style="text-transform: uppercase; width: 20%" type="submit" class="buttonclass">Add More
+                        Videos
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
+
+{% block interface %}
+    {% if user.is_authenticated %}
+        <div id="interface" style="display: none">
+            <div style="position: absolute; top:0; left: 0; height: 100%; width: 100%; z-index: 10;background-color: lightblue; display: block; -webkit-filter: blur(20px); -ms-filter: blur(15px); filter: blur(15px); opacity: 0.75;">
+
+            </div>
+            <div style="position: absolute; left: 0; top: 0; margin-top: 5%; margin-left: 10%; width: 80%; background: white; padding: 30px; text-align: center; z-index: 10; border: 1px solid #eaeeff;">
+                <div style="padding: 2%; font-size: larger; font-weight: bold;">
+                    Select An Object
+                </div>
+                <div style="justify-content: center;display: flex; align-items: center;  z-index: 10;">
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <img id="mainframe" src="{% static 'nocamera.jpg' %}" style="display: block">
+                </div>
+                <div class="col-md-12">
+                    <button style="text-transform: uppercase; background: white; width: 5%; padding: 0; border-radius: 30px;"
+                            type="submit"
+                            class="buttonclass">
+                        <img id="pause" src="{% static 'pause.png' %}" onclick="return false" style="width: 100%">
+                    </button>
+                    <button style="text-transform: uppercase; width: 5%; background: white; border-radius: 30px; padding: 0"
+                            type="submit" class="buttonclass">
+                        <img id="play" src="{% static 'play.png' %}" onclick="return false" style="width: 100%">
+                    </button>
+                    <button style="text-transform: uppercase; width: 5%; background: white; border-radius: 30px; padding: 0"
+                            type="submit" class="buttonclass">
+                        <img id="stop" src="{% static 'stop.png' %}" onclick="return false" style="width: 100%">
+                    </button>
+                    <button style="text-transform: uppercase; width: 5%; background: white; border-radius: 10px; padding: 0"
+                            class="buttonclass">
+                        <img id="capture" src="{% static 'camera.png' %}" onclick="return false" style="width: 100%">
+                    </button>
+                </div>
+                <div class="col-md-12">
+                    <button id="back" style="text-transform: uppercase; width: 15%; padding: 10px" type="submit"
+                            class="buttonclass">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
