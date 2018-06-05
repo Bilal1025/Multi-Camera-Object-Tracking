@@ -23,8 +23,7 @@ SECRET_KEY = 'k#sgpwdm8va-@7ycg(0q+m55l-i(!$r!v8d&2uxw*@*he-^6d='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['megamaninn.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -115,3 +114,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "polls/static"),
+# ]
+#
+# STATIC_URL = '/static/'
+#
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#
+# MIDDLEWARE_CLASSES = [
+#     # Simplified static file serving.
+#     # https://warehouse.python.org/project/whitenoise/
+#     'whitenoise.middleware.WhiteNoiseMiddleware',
+# ]
+
+STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
