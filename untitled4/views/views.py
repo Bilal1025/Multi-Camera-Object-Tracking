@@ -2,7 +2,7 @@ import base64
 
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-import cv2
+
 
 video = None
 tracker = None
@@ -12,6 +12,7 @@ currtype = None
 
 
 def getframe(request):
+    import cv2
     global video, tracker, track, currtype, currcamera
     from django.http import HttpResponse
     if (video is None or not video.isOpened):
@@ -122,6 +123,7 @@ def stoptracker(request):
 
 
 def inittracker(request):
+    import cv2
     global tracker, track
     track = True
     image = request.POST['image']
@@ -139,6 +141,7 @@ def inittracker(request):
 
 
 def readb64(base64_string):
+    import cv2
     from io import BytesIO
     sbuf = BytesIO()
     sbuf.write(base64.b64decode(base64_string))
@@ -162,6 +165,7 @@ def getlink(name, user, type):
 
 
 def openvideo(request):
+    import cv2
     name = request.POST['name']
     ty = request.POST['type']
     global video, currcamera, currtype
@@ -251,6 +255,7 @@ def logoff(request):
 
 
 def addCamera(request):
+    import cv2
     if request.POST:
         name = request.POST['name']
         ipaddr = request.POST['ipaddr']
@@ -296,6 +301,7 @@ def videosview(request):
 
 
 def addVideos(request):
+    import cv2
     global os
     if request.POST:
         name = request.POST['name']
