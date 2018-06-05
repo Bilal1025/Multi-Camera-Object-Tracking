@@ -3,7 +3,6 @@ Pillow==5.0.0
 numpy==1.14.2
 opencv-contrib-python==3.4.0.12
 opencv-python==3.4.0.12
-pip==9.0.3
 pytz==2018.3
 setuptools==39.0.1
 gunicorn==19.8.1
