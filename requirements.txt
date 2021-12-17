@@ -1,4 +1,4 @@
-django==2.0.3
+django==2.2.25
 Pillow==5.1.0
 numpy==1.14.3
 opencv-contrib-python==3.4.1.15
