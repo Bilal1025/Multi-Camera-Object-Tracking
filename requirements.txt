@@ -1,7 +1,7 @@
 django==2.0.3
 Pillow==5.1.0
 numpy==1.14.3
-opencv-contrib-python==3.4.1.15
+opencv-contrib-python==4.2.0.32
 opencv-python==4.2.0.32
 pytz==2018.4
 setuptools==39.2.0
